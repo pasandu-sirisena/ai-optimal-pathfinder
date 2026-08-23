@@ -1,35 +1,12 @@
 # AI Optimal Pathfinder
 
-An autonomous, graph-based pathfinding engine and real-time simulation in Java. The system converts procedurally generated 2D grid environments into weighted directed graphs (DAGs), evaluates optimal trajectories using multiple shortest-path algorithms, and deploys an autonomous tracer agent that navigates the environment in real time.
-
----
-
-## Key Features
-
-- **Procedural Grid Generation**: Generates 2D tile maps ($40 \times 15$) with randomized intersections, orthogonal road corridors, obstacle boundaries, and probabilistic reward/penalty item placements.
-- **Dynamic Graph Construction**: Scans the grid environment and abstracts road networks into an Adjacency List directed graph, aggregating cumulative edge weights along corridors between intersections.
-- **Multi-Algorithm Optimization Engine**:
-  - **Unweighted BFS**: Minimal intersection traversal for unweighted grids.
-  - **Kahn's Topological Sort + DAG Relaxation**: Linear-time optimal pathfinding for directed acyclic graphs.
-  - **Dijkstra's Algorithm**: Non-negative weighted shortest path optimization.
-  - **Bellman-Ford Algorithm**: General-weight shortest path optimization supporting negative edge costs and negative cycle detection.
-- **Real-Time Autonomous Agent**: The tracer agent tracks its heading (`UP`, `DOWN`, `LEFT`, `RIGHT`, `STOP`), validates intersection transitions, and renders real-time breadcrumbs (`.`) along the active path.
-- **Built-in Verification Suite**: Comprehensive unit tests validating graph building, edge weighting, topological sorting, shortest path solvers, and negative cycle handling.
+An autonomous, graph-based pathfinding engine and real-time simulation in Java. The system converts procedurally generated 2D grid environments into weighted directed graphs (DAGs), evaluates optimal trajectories using multiple shortest-path algorithms, and deploys an autonomous player that navigates the environment in real time.
 
 ---
 
 ## Pathfinding Algorithms
 
-The engine features four distinct routing algorithms selectable via the mode menu:
-
-| Mode | Algorithm | Time Complexity | Space Complexity | Supported Graph Types | Weight Handling |
-| :---: | :--- | :---: | :---: | :--- | :--- |
-| **`0`** | **Breadth-First Search (BFS)** | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | Unweighted Graphs / Plain Maps | Ignores weights; minimizes intersection count |
-| **`1`** | **DAG Shortest Path (Topological Sort)** | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | Directed Acyclic Graphs (DAGs) | Linear-time relaxation using Kahn's algorithm |
-| **`2`** | **Dijkstra's Algorithm** | $\mathcal{O}(V^2)$ / $\mathcal{O}(E \log V)$ | $\mathcal{O}(V)$ | Directed Graphs with non-negative weights | Minimizes cumulative penalty costs |
-| **`3`** | **Bellman-Ford Algorithm** | $\mathcal{O}(V \times E)$ | $\mathcal{O}(V)$ | General Directed Graphs | Supports mixed rewards/penalties & detects negative cycles |
-
-### Algorithmic Mechanics
+The engine features four distinct routing algorithms:
 
 1. **Unweighted BFS (`UnweightedShortestPath`)**:
    Explores neighboring intersections level-by-level using a FIFO queue. Guarantees the shortest path in terms of total edges traversed.
@@ -70,7 +47,7 @@ When the simulation runs in your terminal, the environment is rendered using ASC
 
 | Symbol | Meaning | Description |
 | :---: | :--- | :--- |
-| `P` | **Tracer / Agent** | The active autonomous agent traversing the grid. |
+| `P` | **Player** | The active player traversing the grid. |
 | `S` | **Start Point** | Starting intersection at coordinate `(1, 1)`. |
 | `D` | **Destination** | Goal intersection at coordinate `(38, 13)`. |
 | `I` | **Intersection** | Road junctions where graph nodes are formed and decisions are made. |
@@ -84,17 +61,6 @@ When the simulation runs in your terminal, the environment is rendered using ASC
 
 ## Controls & Mode Selection
 
-When you launch `ModelCode_AutoTracer`, the simulation prompts you in the console to select a configuration mode:
-
-```text
-Select Test Setup:
-0 - Plain Map, RIGHT/DOWN Direction Only (DAG)
-1 - Map with Random Penalties (DAG): Topological Sort Shortest Path Algorithm
-2 - Map with Random Penalties (DAG): Dijkstra Shortest Path Algorithm
-3 - Map with Random Penalties and Rewards (DAG): Bellman-Ford Shortest Path Algorithm
-```
-
-### Running the Simulation
 1. Enter `0`, `1`, `2`, or `3` and press `Enter`.
 2. The simulation will procedurally generate the map and compute the optimal route using the selected algorithm.
 3. The terminal will animate the tracer `P` following the route `.` from `S` to `D` in real time (refreshing every 100ms).
