@@ -1,7 +1,5 @@
 import java.util.*;
 
-// This is the upgraded TileGraph from Lab 4 with weighted edges and directivity selection
-
 class WeightedEdge {
 
     private Tile myTile;

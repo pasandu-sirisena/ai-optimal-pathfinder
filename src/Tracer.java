@@ -1,9 +1,5 @@
 import java.util.LinkedList;
 
-// This is the Tracer that will track the Graph Map using
-// Lab 3: Manual Player Control (Synchronous)
-// Lab 4: Automated Greedy Path Finding Algorithm
-
 enum Direction {STOP, UP, DOWN, LEFT, RIGHT}
 
 public class Tracer 

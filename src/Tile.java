@@ -1,4 +1,4 @@
-// Lab 4 - Updated Tile class
+// Tile class
 
 // with Score Penalty (+ive weight) and Score Reward (-ive weight) added to the tile
 

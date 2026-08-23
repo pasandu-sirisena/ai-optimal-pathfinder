@@ -1,9 +1,3 @@
-// Lab 4 Update:
-
-// Smaller Map Size for faster verification (40x15)
-// Score Penality generation chance = 2.5% per tile
-// Score Reward generation chance = 1.5% per tile
-
 import java.util.Random;
 
 public class TileMap {
