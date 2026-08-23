@@ -4,14 +4,6 @@ An autonomous, graph-based pathfinding engine and real-time simulation in Java. 
 
 ---
 
-## Overview
-
-The **AI Optimal Pathfinder** models urban-style grid routing as a graph optimization problem. A 2D procedural tile map containing roads, intersections, obstacles, score penalties, and score rewards is scanned and transformed into an adjacency-list weighted directed graph.
-
-Depending on the environment configuration, the pathfinding engine dynamically leverages specific graph algorithms (Breadth-First Search, DAG Shortest Path with Kahn's Topological Sorting, Dijkstra's Algorithm, or Bellman-Ford with negative-cycle detection) to calculate the globally optimal route between a Start point `(S)` and a Goal destination `(D)`. An autonomous tracer agent (`P`) then executes the route in real time with continuous terminal animation.
-
----
-
 ## Key Features
 
 - **Procedural Grid Generation**: Generates 2D tile maps ($40 \times 15$) with randomized intersections, orthogonal road corridors, obstacle boundaries, and probabilistic reward/penalty item placements.
